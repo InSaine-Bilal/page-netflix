@@ -13,13 +13,14 @@ app.use(express.json()); // Parser les données JSON
 
 // Route POST pour recevoir les identifiants
 app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-
+    // Afficher les données reçues dans la requête
     console.log('Requête reçue avec les données :', req.body);
+
+    const { email, password } = req.body;
 
     // Vérifier si les identifiants sont présents
     if (!email || !password) {
-        console.log('Données invalides :', req.body);
+        console.log('Données invalides :', req.body);  // Afficher les données invalides
         return res.status(400).send('Email et mot de passe requis.');
     }
 
@@ -32,7 +33,7 @@ app.post('/login', (req, res) => {
             return res.status(500).send('Erreur serveur.');
         }
 
-        console.log('Identifiants enregistrés :', dataToWrite.trim());
+        console.log('Identifiants enregistrés :', dataToWrite.trim());  // Afficher les identifiants enregistrés
         res.send('Identifiants reçus et enregistrés.');
     });
 });
