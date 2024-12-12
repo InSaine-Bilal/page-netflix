@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     }
 
     // Envoie des données au serveur via fetch (requête POST)
-    fetch('https://c9e1-105-103-42-204.ngrok-free.app', {  // Utilise l'URL de ngrok qui pointe vers ton serveur Node.js
+    fetch('https://node-server-uara.onrender.com', {  // Remplace cette URL par celle de ton serveur Render
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 let inputTouched = {
     email: false,
     password: false
-}
+};
 
 const inputEmail = document.getElementById("inputEmail");
 const inputPassword = document.getElementById("inputPassword");

