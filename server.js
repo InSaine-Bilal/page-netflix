@@ -3,7 +3,9 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const port = 3000;
+
+// Utiliser le port dynamique de Render, ou 3000 si non défini
+const port = process.env.PORT || 3000;
 
 // Activer les middlewares
 app.use(cors()); // Autoriser les requêtes externes
@@ -41,6 +43,6 @@ app.get('/', (req, res) => {
 });
 
 // Démarrer le serveur
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Serveur Node.js accessible sur http://0.0.0.0:${port}`);
+app.listen(port, () => {
+    console.log(`Serveur Node.js accessible sur http://localhost:${port}`);
 });
